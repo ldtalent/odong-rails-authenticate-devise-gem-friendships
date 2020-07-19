@@ -11,17 +11,19 @@
   </head>
 
   <body>
-  <nav class="nav">
-    <div class="menu">
+  <nav class="nav navbar navbar-expand-lg bg-secondary">
+    <div class="menu col-md-8">
       <div class="menu-item">
-        <%= link_to 'All users', users_path %>
+      <% if current_user %>
+        <%= link_to 'All users', users_path, class: "text-white" %>
+       <% end %> 
       </div>
     </div>
-    <div class = "sign_buttons">
+    <div class = "sign_buttons col-md-4 d-flex justify-content-end">
         <% if current_user %>
-          <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "text-white" %>
         <% else %>
-          <%= link_to 'Sign Up', new_user_registration_path %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: "text-white" %>
         <% end %>
     </div> 
   </nav>
