@@ -7,11 +7,36 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
 
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <nav class="nav">
+    <div class="menu">
+      <div class="menu-item">
+        <%= link_to 'All users', users_path %>
+      </div>
+    </div>
+    <div class = "sign_buttons">
+        <% if current_user %>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Sign Up', new_user_registration_path %>
+        <% end %>
+    </div> 
+  </nav>
+  <% if notice.present? %>
+    <div class="notice">
+      <p> <%= notice %> </p>
+    </div>
+  <% end %>
+  <% if alert.present? %>
+    <div class="alert">
+      <p> <%= alert %> </p>
+    </div>
+  <% end %>
+  <div>
     <%= yield %>
+  </div>
   </body>
 </html>
