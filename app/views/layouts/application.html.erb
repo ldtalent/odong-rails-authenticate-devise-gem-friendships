@@ -7,9 +7,38 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
 
   <body>
+  <nav class="nav navbar navbar-expand-lg bg-secondary">
+    <div class="menu col-md-8">
+      <div class="menu-item">
+      <% if current_user %>
+        <%= link_to 'All users', users_path, class: "text-white" %>
+       <% end %> 
+      </div>
+    </div>
+    <div class = "sign_buttons col-md-4 d-flex justify-content-end">
+        <% if current_user %>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "text-white" %>
+        <% else %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: "text-white" %>
+        <% end %>
+    </div> 
+  </nav>
+  <% if notice.present? %>
+    <div class="notice">
+      <p> <%= notice %> </p>
+    </div>
+  <% end %>
+  <% if alert.present? %>
+    <div class="alert">
+      <p> <%= alert %> </p>
+    </div>
+  <% end %>
+  <div>
     <%= yield %>
+  </div>
   </body>
 </html>
